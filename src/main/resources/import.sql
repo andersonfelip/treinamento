@@ -1,0 +1,1 @@
+insert into users(user_name,first_name,last_name,email,password,status) values('anderson','Anderson','Rocha','anderson_felipe@hotmail.com','123456',1);
