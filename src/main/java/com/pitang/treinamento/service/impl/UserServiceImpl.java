@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.pitang.treinamento.exceptions.ExceptionBadRequest;
+import com.pitang.treinamento.exceptions.ExceptionConflict;
 import com.pitang.treinamento.model.UserModel;
 import com.pitang.treinamento.repository.UserProfileRepository;
 import com.pitang.treinamento.repository.UserRepository;
@@ -37,6 +38,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserModel addUser(UserModel user) {
 		checkMandatoryFields(user);
+		validateUser(user);
 		checkRelations(user);
 		return userRepository.save(user);
 	}
@@ -59,10 +61,21 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 	
+	private void validateUser(UserModel user) {
+		if(!StringUtils.isEmpty(user.getUserName()) && userRepository.findByUserName(user.getUserName()) != null) {
+			throw new ExceptionConflict("Nome de usuário informado já existe!");
+		}
+		if(!StringUtils.isEmpty(user.getEmail()) && userRepository.findByEmail(user.getEmail()) != null) {
+			throw new ExceptionConflict("Email informado já existe!");
+		}
+	}
+	
 	private void checkRelations(UserModel user) {
 		if(user.getUserProfile() != null && user.getUserProfile().getId() != null &&
 				userProfileRepository.findById(user.getUserProfile().getId()) == null) {
 			throw new ExceptionBadRequest("Perfil do usuário não encontrado.");
+		}else if(user.getUserProfile() != null && user.getUserProfile().getId() == null) {
+			user.setUserProfile(null);
 		}
 	}
 

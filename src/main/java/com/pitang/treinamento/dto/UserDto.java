@@ -8,6 +8,8 @@ public class UserDto {
 	private String lastName;
 	private String email;
 	private String status;
+	private String password;
+	private Long profileId;
 	
 	public Long getId() {
 		return id;
@@ -44,5 +46,17 @@ public class UserDto {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public Long getProfileId() {
+		return profileId;
+	}
+	public void setProfileId(Long profileId) {
+		this.profileId = profileId;
 	}
 }
