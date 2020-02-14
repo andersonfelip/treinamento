@@ -1,6 +1,7 @@
 package com.pitang.treinamento.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,12 +38,25 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserModel addUser(UserModel user) {
-		checkMandatoryFields(user);
 		validateUser(user);
-		checkRelations(user);
+		checkIntegrity(user);
 		return userRepository.save(user);
 	}
 	
+	@Override
+	public UserModel updateUser(UserModel user) {
+		if(user.getId() == null) {
+			throw new ExceptionBadRequest("Necessário informar o id para atualizar!");
+		}
+		checkIntegrity(user);
+		//validateUser(user);
+		return userRepository.save(user);
+	}
+	
+	private void checkIntegrity(UserModel user) {
+		checkMandatoryFields(user);
+		checkRelations(user);
+	}
 	private void checkMandatoryFields(UserModel user) {
 		if(user == null) {
 			throw new ExceptionBadRequest("Usuário não pode ser nulo!");
@@ -76,6 +90,14 @@ public class UserServiceImpl implements UserService{
 			throw new ExceptionBadRequest("Perfil do usuário não encontrado.");
 		}else if(user.getUserProfile() != null && user.getUserProfile().getId() == null) {
 			user.setUserProfile(null);
+		}
+	}
+
+	@Override
+	public void deleteUser(Long id) {
+		Optional<UserModel> user = userRepository.findById(id);
+		if(user.isPresent()) {
+			userRepository.deleteById(id);
 		}
 	}
 

@@ -1,16 +1,23 @@
 package com.pitang.treinamento.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by rajeevkumarsingh on 20/11/17.
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
+
 @Entity
 @Table(name = "user_profiles")
-public class UserProfile implements Serializable {
+public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,10 +25,6 @@ public class UserProfile implements Serializable {
     @Column(name = "phone_number")
     @Size(max = 15)
     private String phoneNumber;
-
-    @Enumerated(EnumType.STRING)
-    @Column(length = 10)
-    private Gender gender;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "dob")
@@ -57,11 +60,10 @@ public class UserProfile implements Serializable {
 
     }
 
-    public UserProfile(String phoneNumber, Gender gender, Date dateOfBirth,
+    public UserProfile(String phoneNumber,  Date dateOfBirth,
                        String address1, String address2, String street, String city,
                        String state, String country, String zipCode) {
         this.phoneNumber = phoneNumber;
-        this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.address1 = address1;
         this.address2 = address2;
@@ -86,14 +88,6 @@ public class UserProfile implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
     }
 
     public Date getDateOfBirth() {

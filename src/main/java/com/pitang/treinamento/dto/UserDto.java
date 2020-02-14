@@ -1,5 +1,8 @@
 package com.pitang.treinamento.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
 	
 	private Long id;
@@ -9,7 +12,7 @@ public class UserDto {
 	private String email;
 	private String status;
 	private String password;
-	private Long profileId;
+	private UserProfileDto userProfileDto;
 	
 	public Long getId() {
 		return id;
@@ -53,10 +56,10 @@ public class UserDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Long getProfileId() {
-		return profileId;
+	public UserProfileDto getUserProfileDto() {
+		return userProfileDto;
 	}
-	public void setProfileId(Long profileId) {
-		this.profileId = profileId;
+	public void setUserProfileDto(UserProfileDto userProfileDto) {
+		this.userProfileDto = userProfileDto;
 	}
 }

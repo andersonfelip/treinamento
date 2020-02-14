@@ -1,1 +1,2 @@
 insert into users(user_name,first_name,last_name,email,password,status) values('anderson','Anderson','Rocha','anderson_felipe@hotmail.com','123456',1);
+insert into user_profiles(id,phone_number,dob,address1,address2,street,city,state,country,zip_code,user_id) values(null,'81-98879-3221','2020-02-13','add test','add teste1','street mock ipsum','Recife','Pernambuco','Brazil','51021-130',1);
