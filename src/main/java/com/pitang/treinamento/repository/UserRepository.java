@@ -6,7 +6,7 @@ import com.pitang.treinamento.model.UserModel;
 
 public interface UserRepository extends JpaRepository<UserModel, Long> {
 	
-	UserModel findByUserName(String userName);
+	UserModel findByUsername(String userName);
 	UserModel findByEmail(String email);
 	
 }

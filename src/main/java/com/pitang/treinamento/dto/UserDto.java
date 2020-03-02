@@ -1,18 +1,21 @@
 package com.pitang.treinamento.dto;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
 	
 	private Long id;
-	private String userName;
-	private String firstName;
-	private String lastName;
+	private String name;
+	private String username;
 	private String email;
-	private String status;
 	private String password;
 	private UserProfileDto userProfileDto;
+	private List<UserDto> contacts;
+	private List<MessageDto> messages;
+	private List<StoryDto> stories;
 	
 	public Long getId() {
 		return id;
@@ -20,35 +23,23 @@ public class UserDto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getFirstName() {
-		return firstName;
+	public String getUsername() {
+		return username;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	public String getPassword() {
 		return password;
@@ -62,4 +53,23 @@ public class UserDto {
 	public void setUserProfileDto(UserProfileDto userProfileDto) {
 		this.userProfileDto = userProfileDto;
 	}
+	public List<UserDto> getContacts() {
+		return contacts;
+	}
+	public void setContacts(List<UserDto> contacts) {
+		this.contacts = contacts;
+	}
+	public List<MessageDto> getMessages() {
+		return messages;
+	}
+	public void setMessages(List<MessageDto> messages) {
+		this.messages = messages;
+	}
+	public List<StoryDto> getStories() {
+		return stories;
+	}
+	public void setStories(List<StoryDto> stories) {
+		this.stories = stories;
+	}
+	
 }

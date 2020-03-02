@@ -9,7 +9,7 @@ import org.modelmapper.Converter;
 
 public class ModelConverter {
 	
-	private static final String OUTPUT_FORMAT_FOR_DATE_HOUR = "dd/MM/yyyy";
+	private static final String OUTPUT_FORMAT_FOR_DATE_HOUR = "dd/MM/yyyy hh:mm:ss";
 	
 	private ModelConverter() {
 		throw new IllegalStateException("Utility class");
